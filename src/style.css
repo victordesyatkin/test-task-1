@@ -1,0 +1,25 @@
+@font-face {
+  font-family: momo;
+  src: url("./montserrat-regular.woff") format("woff2");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.hello {
+  color: darkcyan;
+  background: url("./icon.png");
+  font-family: momo;
+}
+
+.line {
+  line-height: 12;
+  text-decoration: underline overline;
+}
+
+.copy {
+  vertical-align: middle;
+}
+
+.image {
+  vertical-align: top;
+}
