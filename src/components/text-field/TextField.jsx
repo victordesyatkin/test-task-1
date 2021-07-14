@@ -3,7 +3,7 @@ import React from 'react';
 import './text-field.scss';
 
 const TextField = (props) => {
-  const { type = 'text', value, name, label } = props;
+  const { type = 'text', value, name, label, onChange } = props;
   const className = 'text-field';
   let classNames = `${className}`;
   classNames += type === 'number' ? ` ${className}_type-number` : '';
@@ -17,6 +17,7 @@ const TextField = (props) => {
         type={type}
         name={name}
         id={htmlFor}
+        onChange={onChange}
       />
     </label>
   );

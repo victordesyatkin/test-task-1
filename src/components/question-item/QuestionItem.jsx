@@ -16,6 +16,11 @@ const QuestionItem = ({
 }) => {
   const formRef = useRef(null);
   const fieldName = 'answer';
+  // const onSubmit = useCallback(() => {
+  //   if (formRef.current) {
+  //     const formData = new FormData(formRef.current);
+  //   }
+  // }, [formRef]);
   const memoizedCreateAnswers = useCallback(() => {
     switch (type) {
       case 'test': {
