@@ -1,0 +1,13 @@
+$root: 'test-list';
+
+.#{$root} {
+  list-style-type: none;
+
+  &__item {
+    margin-bottom: 0.5rem;
+  }
+
+  &__item:last-child {
+    margin-bottom: initial;
+  }
+}

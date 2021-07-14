@@ -1,0 +1,32 @@
+$root: 'text-field';
+
+.#{$root} {
+  width: 100%;
+  min-width: 0;
+
+  &.#{$root}_type-number {
+    .#{$root}__input {
+      padding-right: initial;
+    }
+  }
+
+  &__label {
+    margin-bottom: 0.5rem;
+  }
+
+  .#{$root}__input {
+    border: 1px solid $primary-color-opacity-25;
+    color: $primary-color-opacity-25;
+    border-radius: 0.314rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $primary-color-opacity-50;
+      color: $primary-color-opacity-75;
+      outline: none;
+    }
+  }
+}

@@ -5,6 +5,7 @@ const types = ['test', 'single', 'question', 'number'];
 function Options() {
   this.id = faker.datatype.uuid();
   this.content = faker.lorem.sentence();
+  this.name = faker.datatype.uuid();
 }
 
 function Question(id) {

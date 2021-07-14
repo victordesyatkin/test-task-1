@@ -1,6 +1,9 @@
 import React, { useCallback, useRef } from 'react';
 
 import Image from '../image';
+import TestList from '../test-list';
+import SingleList from '../single-list';
+import TextField from '../text-field';
 import './question-item.scss';
 
 const QuestionItem = ({
@@ -9,11 +12,35 @@ const QuestionItem = ({
   method = 'POST',
   type,
   image,
+  options,
 }) => {
   const formRef = useRef(null);
+  const fieldName = 'answer';
   const memoizedCreateAnswers = useCallback(() => {
-    return null;
-  }, []);
+    switch (type) {
+      case 'test': {
+        return <TestList options={options} />;
+      }
+      case 'question': {
+        return <TextField name={fieldName} label="Enter complete answer" />;
+      }
+      case 'single': {
+        return <SingleList options={options} name={fieldName} />;
+      }
+      case 'number': {
+        return (
+          <TextField
+            type="number"
+            name={fieldName}
+            label="Enter a numeric answer"
+          />
+        );
+      }
+      default: {
+        return null;
+      }
+    }
+  }, [type, options]);
   return (
     <form
       action={action}
@@ -27,10 +54,8 @@ const QuestionItem = ({
         </div>
       )}
       <div className="question-item__question">{question}</div>
-      <div className="question-item__answers">
-        {memoizedCreateAnswers(type)}
-      </div>
-      <div className="question-item__control">item__control</div>
+      <div className="question-item__answers">{memoizedCreateAnswers()}</div>
+      <div className="question-item__control" />
     </form>
   );
 };

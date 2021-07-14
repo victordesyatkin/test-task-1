@@ -112,18 +112,17 @@ module.exports = (env) => {
           ],
         },
         {
-          test: /\.(png|jpg|jpeg|gif|ico)$/i,
-          exclude: path.resolve(__dirname, 'src/assets'),
+          test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
+          exclude: [path.resolve(__dirname, 'src/assets'), '/node_modules/'],
           use: [
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'images',
+                outputPath: 'assets/images',
                 name: '[name]-[contenthash].[ext]',
               },
             },
           ],
-          type: 'asset/resource',
         },
       ],
     },
@@ -131,7 +130,7 @@ module.exports = (env) => {
       minimize: isProduction,
       minimizer: [new CssMinimizerPlugin(), new HtmlMinimizerPlugin(), '...'],
     },
-    target: isDevelopment ? 'web' : 'browserslist',
+    target: 'web',
     resolve: {
       extensions: ['.js', '.jsx', '.ts', 'tsx'],
     },

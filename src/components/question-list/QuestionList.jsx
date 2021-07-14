@@ -18,7 +18,6 @@ const QuestionList = ({ questions }) => {
     }
     return list;
   }, [questions]);
-  console.log('memoizedQuestions : ', memoizedQuestions);
   const questionList = memoizedQuestions?.map((question) => (
     <li className="question-list__item" key={question?.id}>
       <QuestionItem {...question} />

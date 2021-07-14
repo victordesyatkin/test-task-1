@@ -26,6 +26,11 @@ $color-purple-light: #8ba4f9;
 $color-purple: #bc9cff;
 $color-green: #6fcf97;
 $color-green-light: #66d2ea;
+$gradient-primary: linear-gradient(
+  180deg,
+  $primary-color 0%,
+  $color-purple 100%
+);
 
 @mixin font-family-first-regular {
   font-family: $font-family-body;
@@ -114,4 +119,8 @@ $color-green-light: #66d2ea;
 .scrollbar::-webkit-scrollbar-thumb {
   border-radius: 6px;
   background-clip: padding-box;
+}
+
+@mixin user-select-none {
+  user-select: none;
 }
