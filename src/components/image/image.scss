@@ -1,0 +1,16 @@
+$root: 'image';
+
+.#{$root} {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: 50% 50%;
+  }
+}

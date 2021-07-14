@@ -1,0 +1,24 @@
+$root: 'question-item';
+
+.#{$root} {
+  border: 0.071rem solid $primary-color-opacity-25;
+  border-radius: 0.214rem;
+  width: 100%;
+  padding: 1rem;
+  background-color: $color-grey-medium-light;
+
+  & > div {
+    margin-bottom: 1rem;
+  }
+
+  & > div:last-child {
+    margin-bottom: initial;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    border-radius: 0.314rem;
+    overflow: hidden;
+  }
+}
