@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -5,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
   const { development } = env;
@@ -18,7 +20,7 @@ module.exports = (env) => {
   };
   return {
     entry: {
-      index: path.resolve(__dirname, 'src/index.jsx'),
+      index: path.resolve(__dirname, './src/index.tsx'),
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -27,11 +29,12 @@ module.exports = (env) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
+        title: 'Quizzes',
         template: path.resolve(__dirname, 'src/assets/template/index.html'),
-        title: 'Demo webpack, react, redux',
         meta: {
-          description: 'webpack-demo, react-demo, redux-demo',
-          keywords: 'webpack, react, redux, demo',
+          description: 'The Super Duper Quizzes',
+          keywords:
+            'webpack, react, redux, react-router, demo, quizzes, styled-components, redux-thunk, typescript',
           viewport: 'initial-scale=1.0, width=device-width',
           'msapplication-TileColor': '#da532c',
         },
@@ -39,6 +42,7 @@ module.exports = (env) => {
           manifest: 'assets/favicon/site.webmanifest',
         },
       }),
+      new Dotenv(),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -63,7 +67,7 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/i,
+          test: /\.(t|j)sx?$/i,
           exclude: /node_modules/,
           use: [
             {
@@ -112,6 +116,20 @@ module.exports = (env) => {
           ],
         },
         {
+          test: /\.(ttf|otf|eot|woff|woff2|svg)$/,
+          include: /fonts/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: 'assets/fonts/',
+                publicPath: '../assets/fonts/',
+                name: '[name].[ext]?version=[contenthash]',
+              },
+            },
+          ],
+        },
+        {
           test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
           exclude: [path.resolve(__dirname, 'src/assets'), '/node_modules/'],
           use: [
@@ -130,9 +148,10 @@ module.exports = (env) => {
       minimize: isProduction,
       minimizer: [new CssMinimizerPlugin(), new HtmlMinimizerPlugin(), '...'],
     },
-    target: 'web',
+    target: isDevelopment ? 'web' : 'browserslist',
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', 'tsx'],
+      modules: ['src', 'node_modules'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
   };
 };

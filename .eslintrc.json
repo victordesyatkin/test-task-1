@@ -11,9 +11,11 @@
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
@@ -38,6 +40,9 @@
     "react/prop-types": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
+    "no-shadow": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-filename-extension": [

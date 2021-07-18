@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CheckboxButton from '../checkbox-button';
+import CheckboxButton from '../checkbox-field';
 
 const TestItem = (props) => {
   const { name, content } = props;
