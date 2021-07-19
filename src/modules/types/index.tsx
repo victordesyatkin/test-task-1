@@ -71,6 +71,10 @@ type CheckboxFieldType = Partial<{
   isChecked: boolean;
 }>;
 
+type LabelType = {
+  content: string;
+};
+
 const enum QuestionTypes {
   'test',
   'single',
@@ -92,4 +96,5 @@ export type {
   EndpointsType,
   RoutesType,
   CheckboxFieldType,
+  LabelType,
 };

@@ -1,3 +1,3 @@
-import CheckboxButton from './CheckboxButton';
+import CheckboxField from './CheckboxField';
 
-export default CheckboxButton;
+export default CheckboxField;

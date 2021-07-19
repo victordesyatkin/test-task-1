@@ -5,12 +5,13 @@ import FieldStyled from '../../components/field-styled';
 import FormStyled from '../../components/form-styled';
 
 const colors = {
-  grey: '#808488',
+  grey: '#808488', // #eaeff4
   lightGrey: '#dddddd',
   white: '#fff',
   black: '#000',
   lightRed: '#ffa5a5',
   blue: '#17a2b8',
+  blueLight: '#50a1ff',
   green: '#28a745',
   yellow: '#ffc107',
   primaryColor: rgba(31, 32, 65, 1),
@@ -49,43 +50,9 @@ const Scrollbars = styled.div`
   }
 `;
 
-const Input = styled(FieldStyled)`
-  width: 100%;
-  padding: 0.7rem;
-  outline: none;
-  border: 1px solid ${colors.primaryColorOpacity25};
-  border-radius: 0.285rem;
-  cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: ${colors.primaryColorOpacity25};
-
-  ::placeholder {
-    color: ${colors.primaryColorOpacity25};
-  }
-
-  :focus,
-  :hover {
-    border-color: ${colors.primaryColorOpacity50};
-    color: ${colors.primaryColorOpacity50};
-  }
-`;
-
 const Form = styled(FormStyled)`
   width: 100%;
   min-width: 0;
 `;
 
-const Label = styled.label`
-  width: 100%;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.214rem;
-  color: ${colors.primaryColorOpacity50};
-  cursor: pointer;
-`;
-
-export { colors, sizes, Scrollbars, Input, Form, Label };
+export { colors, sizes, Scrollbars, Form };

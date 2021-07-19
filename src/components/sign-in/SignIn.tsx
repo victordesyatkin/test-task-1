@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 
-import { colors, sizes, Input, Form, Label } from '../../assets/theme';
+import { colors, sizes, Form } from '../../assets/theme';
 import { initialStateType, AuthType } from '../../modules/types';
-import CheckboxField from '../checkbox-field/CheckboxButton';
+import Label from '../label';
+import CheckboxField from '../checkbox-field/CheckboxField';
+import InputField from '../input-field/InputField';
 
 const SignInWrapper = styled.div`
   width: 100%;
@@ -50,23 +52,38 @@ const SignIn: FC = () => {
   return (
     <SignInWrapper>
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        <Form>
-          <SignInForm>
-            <SignInHeader>Sign in to Quiz Developer</SignInHeader>
-            <SignInBody>
-              <Label>
-                <Input
-                  aria-label="email"
-                  name="email"
-                  placeholder="Email"
-                  type="text"
-                />
-              </Label>
-              <CheckboxField name="isRemember" label="Remember me" />
-              <button type="submit">Submit</button>
-            </SignInBody>
-          </SignInForm>
-        </Form>
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          // handleSubmit,
+          // isSubmitting,
+        }) => (
+          <Form>
+            <SignInForm>
+              <SignInHeader>Sign in to Quiz Developer</SignInHeader>
+              <SignInBody>
+                <Label>
+                  <InputField
+                    aria-label="email"
+                    name="email"
+                    placeholder="Email"
+                    type="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errors={errors}
+                    touched={touched}
+                  />
+                </Label>
+                <CheckboxField name="isRemember" label="Remember me" />
+                <button type="submit">Submit</button>
+              </SignInBody>
+            </SignInForm>
+          </Form>
+        )}
       </Formik>
     </SignInWrapper>
   );
