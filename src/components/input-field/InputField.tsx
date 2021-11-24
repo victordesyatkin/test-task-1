@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { FieldAttributes } from 'formik';
 
-import { colors } from '../../assets/theme';
+import { colors } from '../../main/assets/theme';
 import FieldStyled from '../field-styled';
 
 const InputWrapper = styled.div`

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
 
-import FieldStyled from '../../components/field-styled';
-import FormStyled from '../../components/form-styled';
+import FormStyled from '../../../components/form-styled';
 
 const colors = {
   grey: '#808488', // #eaeff4

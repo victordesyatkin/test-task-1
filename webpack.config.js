@@ -7,6 +7,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 module.exports = (env) => {
   const { development } = env;
@@ -15,7 +16,14 @@ module.exports = (env) => {
   const getStyleLoaders = () => {
     return [
       isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-      'css-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          modules: {
+            localIdentName: '[local]--[hash:base64:5]',
+          },
+        },
+      },
     ];
   };
   return {
@@ -30,7 +38,10 @@ module.exports = (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Quizzes',
-        template: path.resolve(__dirname, 'src/assets/template/index.html'),
+        template: path.resolve(
+          __dirname,
+          'src/main/assets/template/index.html'
+        ),
         meta: {
           description: 'The Super Duper Quizzes',
           keywords:
@@ -46,7 +57,7 @@ module.exports = (env) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: path.resolve(__dirname, 'src/assets/favicon'),
+            from: path.resolve(__dirname, 'src/main/assets/favicon'),
             to: 'assets/favicon',
           },
         ],
@@ -56,19 +67,23 @@ module.exports = (env) => {
           filename: 'css/[name].css?version=[contenthash]',
           chunkFilename: 'css/[id].css?version=[contenthash]',
         }),
-      isDevelopment && new ReactRefreshWebpackPlugin(),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
+      isDevelopment &&
+        new ReactRefreshWebpackPlugin({
+          exclude: [/node_modules/],
+        }),
     ].filter(Boolean),
     output: {
       filename: '[name].bundle.js?version=[contenthash]',
       path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
-    mode: 'development',
+    mode: isDevelopment ? 'development' : 'production',
     module: {
       rules: [
         {
           test: /\.(t|j)sx?$/i,
-          exclude: /node_modules/,
+          exclude: [/node_modules/],
           use: [
             {
               loader: 'babel-loader',
@@ -78,9 +93,9 @@ module.exports = (env) => {
                   '@babel/preset-react',
                   '@babel/preset-typescript',
                 ],
-                plugins: [
-                  isDevelopment && require.resolve('react-refresh/babel'),
-                ].filter(Boolean),
+                plugins: [isDevelopment && 'react-refresh/babel'].filter(
+                  Boolean
+                ),
               },
             },
           ],
@@ -106,7 +121,7 @@ module.exports = (env) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: isDevelopment,
-                additionalData: '@import "assets/theme/variables.scss";',
+                additionalData: '@import "main/assets/theme/variables.scss";',
                 sassOptions: {
                   includePaths: [path.join(__dirname, 'src')],
                   outputStyle: isDevelopment ? 'expanded' : 'compressed',
@@ -122,7 +137,7 @@ module.exports = (env) => {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'assets/fonts/',
+                outputPath: 'main/assets/fonts/',
                 publicPath: '../assets/fonts/',
                 name: '[name].[ext]?version=[contenthash]',
               },
@@ -131,7 +146,10 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
-          exclude: [path.resolve(__dirname, 'src/assets'), '/node_modules/'],
+          exclude: [
+            path.resolve(__dirname, 'src/main/assets'),
+            '/node_modules/',
+          ],
           use: [
             {
               loader: 'file-loader',
@@ -153,5 +171,8 @@ module.exports = (env) => {
       modules: ['src', 'node_modules'],
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
+    // resolveLoader: {
+    //   modules: [path.join(__dirname, 'node_modules')],
+    // },
   };
 };

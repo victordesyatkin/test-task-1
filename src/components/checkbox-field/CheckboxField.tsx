@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../assets/theme';
+import { colors } from '../../main/assets/theme';
 import { CheckboxFieldType } from '../../modules/types';
 import FieldStyled from '../field-styled';
 import Label from '../label';

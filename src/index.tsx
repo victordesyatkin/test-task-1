@@ -1,16 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
 
-import App from './containers/app';
-import store from './modules/store';
+import { App } from './main';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </Provider>,
-  document.getElementById('root')
-);
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App />, rootElement);

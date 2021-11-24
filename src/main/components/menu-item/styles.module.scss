@@ -1,0 +1,22 @@
+.MenuItem {
+  &__item {
+    color: #46505a;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: none;
+
+    &_active {
+      font-weight: 700;
+    }
+  }
+
+  &__arrow {
+    margin-left: 0.3125rem;
+    display: flex;
+    align-items: center;
+
+    &_open {
+      transform: rotate(180deg);
+    }
+  }
+}

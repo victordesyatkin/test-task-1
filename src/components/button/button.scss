@@ -1,0 +1,34 @@
+$root: 'button';
+
+.#{$root} {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+
+  &_variant-play {
+    .#{$root}__content {
+      width: 2.857rem;
+      height: 2.857rem;
+    }
+  }
+
+  &_variant-stop {
+    .#{$root}__content {
+      width: 0.857rem;
+      height: 0.857rem;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 
-import { colors, sizes, Form } from '../../assets/theme';
+import { colors, sizes, Form } from '../../main/assets/theme';
 import { initialStateType, AuthType } from '../../modules/types';
 import Label from '../label';
 import CheckboxField from '../checkbox-field/CheckboxField';

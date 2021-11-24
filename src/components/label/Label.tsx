@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../assets/theme';
+import { colors } from '../../main/assets/theme';
 
 const LabelWrapper = styled.label`
   width: 100%;
