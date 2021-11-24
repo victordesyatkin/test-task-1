@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { MenuItem, MenuItemProps } from '../menu-item';
+import { MenuItem } from 'main';
+import type { MenuItemProps } from 'main';
 import styles from './styles.module.scss';
 
 interface MenuListProps {
